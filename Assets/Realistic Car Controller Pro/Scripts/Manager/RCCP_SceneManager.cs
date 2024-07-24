@@ -53,6 +53,8 @@ public class RCCP_SceneManager : RCCP_Singleton<RCCP_SceneManager> {
     /// </summary>
     public bool disableUIWhenNoPlayerVehicle = false;
 
+    public bool disableCamerasWhenNoPlayerVehicle = false;
+
     /// <summary>
     /// Multithreading is supported on this platform?
     /// </summary>

@@ -587,6 +587,11 @@ public class RCCP_Camera : RCCP_GenericComponent {
 
     private void LateUpdate() {
 
+        if (RCCP_SceneManager.Instance.disableCamerasWhenNoPlayerVehicle)
+        {
+            pivot.SetActive(RCCP_SceneManager.Instance.activePlayerVehicle);
+        }
+        
         if (!IsCameraActive())
             return;
 
