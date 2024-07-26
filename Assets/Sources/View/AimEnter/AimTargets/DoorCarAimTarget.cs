@@ -2,7 +2,7 @@
 
 namespace Sources.View.AimEnter.AimTargets
 {
-    public class CarAimTarget : AimTarget
+    public class DoorCarAimTarget : AimTarget
     {
         public override void Accept(TargetAimEnterVisitor visitor)
         {

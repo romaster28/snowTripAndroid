@@ -27,7 +27,7 @@ namespace Sources.View.AimEnter
 
             if (!Physics.Linecast(origin, origin + transform.forward * _maxDistance, out RaycastHit hit, _mask)) 
                 return;
-            
+
             if (hit.collider.TryGetComponent(out AimTarget target)) 
                 OnEnter?.Invoke(target);
         }
