@@ -1,4 +1,5 @@
 ﻿using Sources.Signals.Game;
+using Sources.Signals.Game.Interface;
 using Zenject;
 
 namespace Sources.Installers.SignalInstallers
@@ -9,7 +10,22 @@ namespace Sources.Installers.SignalInstallers
         {
             SignalBusInstaller.Install(Container);
 
-            Container.DeclareSignal<CarAimEnterSignal>();
+            Container.DeclareSignal<CarDoorAimEnterSignal>();
+
+            Container.DeclareSignal<CarDoorAimExitSignal>();
+
+            Container.DeclareSignal<CharacterEnteredCarSignal>();
+
+            Container.DeclareSignal<LeaveCarClickedSignal>();
+
+            Container.DeclareSignal<CharacterLeftCarSignal>();
+            
+            DeclareInterfaceSignals();
+        }
+
+        private void DeclareInterfaceSignals()
+        {
+            Container.DeclareSignal<EnterCarClickedSignal>();
         }
     }
 }

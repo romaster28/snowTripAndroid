@@ -12,7 +12,11 @@ namespace Sources.View.AimEnter
 
         [SerializeField] private LayerMask _mask;
 
-        public event Action<AimTarget> OnEnter; 
+        private AimTarget _last;
+        
+        public event Action<AimTarget> OnEnter;
+
+        public event Action<AimTarget> OnExit; 
 
         private void OnDrawGizmos()
         {
@@ -25,14 +29,39 @@ namespace Sources.View.AimEnter
         {
             Vector3 origin = transform.position;
 
-            if (!Physics.Linecast(origin, origin + transform.forward * _maxDistance, out RaycastHit hit, _mask)) 
+            if (!Physics.Linecast(origin, origin + transform.forward * _maxDistance, out RaycastHit hit, _mask))
+            {
+                TryExit();
+                
                 return;
+            }
 
-            if (hit.collider.TryGetComponent(out AimTarget target)) 
-                OnEnter?.Invoke(target);
+            if (!hit.collider.TryGetComponent(out AimTarget target))
+            {
+                TryExit();
+                
+                return;
+            }
+
+            if (_last == target)
+                return;
+            
+            _last = target;
+            
+            OnEnter?.Invoke(target);
         }
 
-        private void Start()
+        private void TryExit()
+        {
+            if (_last == null)
+                return;
+
+            OnExit?.Invoke(_last);
+            
+            _last = null;
+        }
+
+        private void OnEnable()
         {
             StartCoroutine(Checking());
         }

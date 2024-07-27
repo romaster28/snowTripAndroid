@@ -14,6 +14,8 @@ namespace Sources.Installers
         {
             Container.Bind<TargetAimEnterVisitor>().To<DefaultTargetAimEnterVisitor>().WhenInjectedInto<AimEnterRouter>();
 
+            Container.Bind<TargetAimExitVisitor>().To<DefaultTargetAimExitVisitor>().WhenInjectedInto<AimEnterRouter>();
+            
             Container.BindInterfacesAndSelfTo<AimEnterRouter>().AsSingle().WithArguments(_listener);
         }
     }

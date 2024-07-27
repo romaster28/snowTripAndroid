@@ -1,6 +1,6 @@
 ﻿namespace Sources.Signals.Game
 {
-    public class CarAimEnterSignal
+    public class CharacterLeftCarSignal
     {
         
     }

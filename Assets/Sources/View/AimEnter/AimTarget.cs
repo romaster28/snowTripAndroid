@@ -7,5 +7,7 @@ namespace Sources.View.AimEnter
     public abstract class AimTarget : MonoBehaviour
     {
         public abstract void Accept(TargetAimEnterVisitor visitor);
+
+        public abstract void Accept(TargetAimExitVisitor visitor);
     }
 }

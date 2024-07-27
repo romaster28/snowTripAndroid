@@ -7,6 +7,8 @@ namespace Sources.Core.AimEnter
     {
         [Inject] private readonly TargetAimEnterVisitor _visitor;
 
+        [Inject] private readonly TargetAimExitVisitor _exitVisitor;
+        
         private readonly AimEnterListener _listener;
 
         public AimEnterRouter(AimEnterListener listener)
@@ -19,9 +21,16 @@ namespace Sources.Core.AimEnter
             target.Accept(_visitor);
         }
 
+        private void ListenerOnExit(AimTarget target)
+        {
+            target.Accept(_exitVisitor);
+        }
+
         public void Initialize()
         {
             _listener.OnEnter += ListenerOnOnEnter;
+
+            _listener.OnExit += ListenerOnExit;
         }
     }
 }

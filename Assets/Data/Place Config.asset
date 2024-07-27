@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Place Config
   m_EditorClassIdentifier: 
   _interface:
-    _disappearInteractButtonsDuration: 3
+    _disappearInteractButtonsDuration: 0.2

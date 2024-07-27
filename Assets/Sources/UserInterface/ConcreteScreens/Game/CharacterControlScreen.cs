@@ -10,6 +10,8 @@ namespace Sources.UserInterface.ConcreteScreens.Game
 
         public event Action OnEnterCarClicked;
 
+        public void SetEnterCarActive(bool isActive) => _enterCar.gameObject.SetActive(isActive);
+
         private void Start()
         {
             _enterCar.onClick.AddListener(delegate

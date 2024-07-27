@@ -8,5 +8,10 @@ namespace Sources.View.AimEnter.AimTargets
         {
             visitor.Visit(this);
         }
+
+        public override void Accept(TargetAimExitVisitor visitor)
+        {
+            visitor.Visit(this);
+        }
     }
 }
