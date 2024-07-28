@@ -1,34 +1,33 @@
-﻿using Sources.View.AimEnter;
+﻿using Sources.Core.AimEnter.Visitors;
+using Sources.Signals.Game;
+using Sources.View.AimEnter;
 using Zenject;
 
 namespace Sources.Core.AimEnter
 {
     public class AimEnterRouter : IInitializable
     {
-        [Inject] private readonly TargetAimEnterVisitor _visitor;
+        [Inject] private readonly AimTargetEnterVisitor[] _enterVisitors;
 
-        [Inject] private readonly TargetAimExitVisitor _exitVisitor;
-        
-        private readonly AimEnterListener _listener;
+        [Inject] private readonly AimTargetExitVisitor[] _exitVisitors;
 
-        public AimEnterRouter(AimEnterListener listener)
+        [Inject] private readonly IAimEnterListener _listener;
+
+        private void ListenerOnEnter(IAimTarget target)
         {
-            _listener = listener;
+            foreach (AimTargetEnterVisitor enterVisitor in _enterVisitors) 
+                target.Accept(enterVisitor);
         }
 
-        private void ListenerOnOnEnter(AimTarget target)
+        private void ListenerOnExit(IAimTarget target)
         {
-            target.Accept(_visitor);
-        }
-
-        private void ListenerOnExit(AimTarget target)
-        {
-            target.Accept(_exitVisitor);
+            foreach (AimTargetExitVisitor exitVisitor in _exitVisitors) 
+                target.Accept(exitVisitor);
         }
 
         public void Initialize()
         {
-            _listener.OnEnter += ListenerOnOnEnter;
+            _listener.OnEnter += ListenerOnEnter;
 
             _listener.OnExit += ListenerOnExit;
         }

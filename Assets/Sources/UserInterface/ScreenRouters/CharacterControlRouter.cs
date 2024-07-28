@@ -1,6 +1,8 @@
 ﻿using Sources.Signals.Game;
 using Sources.Signals.Game.Interface;
 using Sources.UserInterface.ConcreteScreens.Game;
+using Sources.View.AimEnter;
+using Sources.View.AimEnter.AimTargets;
 using Zenject;
 
 namespace Sources.UserInterface.ScreenRouters
@@ -14,23 +16,9 @@ namespace Sources.UserInterface.ScreenRouters
         [Inject] private readonly ElementEnterShower _shower;
 
         private CharacterControlScreen Screen => _screens.Get<CharacterControlScreen>();
-        
-        private void OnCarDoorEnterAim(CarDoorAimEnterSignal _)
-        {
-            Screen.SetEnterCarActive(true);
-        }
-
-        private void OnCarDoorExitAim(CarDoorAimExitSignal _)
-        {
-            Screen.SetEnterCarActive(false);
-        }
 
         public void Initialize()
         {
-            _signalBus.Subscribe<CarDoorAimEnterSignal>(OnCarDoorEnterAim);
-            
-            _signalBus.Subscribe<CarDoorAimExitSignal>(OnCarDoorExitAim);
-            
             _signalBus.Subscribe(delegate(CharacterEnteredCarSignal _)
             {
                 Screen.SetEnterCarActive(false);
@@ -43,12 +31,36 @@ namespace Sources.UserInterface.ScreenRouters
                 Screen.Open();
             });
             
-            Screen.SetEnterCarActive(false);
+            _signalBus.Subscribe(delegate(ItemTakenSignal _)
+            {
+                Screen.SetDropItemActive(true);
+            });
             
+            _signalBus.Subscribe(delegate(ItemDroppedSignal _)
+            {
+                Screen.SetDropItemActive(false);
+            });
+
             Screen.OnEnterCarClicked += delegate
             {
                 _signalBus.Fire<EnterCarClickedSignal>();
             };
+            
+            Screen.OnTakeItemClicked += delegate
+            {
+                _signalBus.Fire<TakeItemClickedSignal>();
+            };
+            
+            Screen.OnDropItemClicked += delegate
+            {
+                _signalBus.Fire<DropItemClickedSignal>();
+            };
+            
+            Screen.SetEnterCarActive(false);
+            
+            Screen.SetTakeItemActive(false);
+            
+            Screen.SetDropItemActive(false);
         }
     }
 }

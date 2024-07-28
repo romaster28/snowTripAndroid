@@ -1,5 +1,6 @@
 ﻿using Sources.Core.AimEnter;
 using Sources.Core.AimEnter.Visitors;
+using Sources.UserInterface.AimTargetVisitors;
 using Sources.View.AimEnter;
 using UnityEngine;
 using Zenject;
@@ -8,15 +9,33 @@ namespace Sources.Installers
 {
     public class AimEnterInstaller : MonoInstaller
     {
-        [SerializeField] private AimEnterListener _listener;
+        [SerializeField] private DefaultAimEtnerListener _listener;
         
         public override void InstallBindings()
         {
-            Container.Bind<TargetAimEnterVisitor>().To<DefaultTargetAimEnterVisitor>().WhenInjectedInto<AimEnterRouter>();
+            var enterVisitors = new AimTargetEnterVisitor[]
+            {
+                new InterfaceAimTargetEnterVisitor()
+            };
 
-            Container.Bind<TargetAimExitVisitor>().To<DefaultTargetAimExitVisitor>().WhenInjectedInto<AimEnterRouter>();
+            var exitVisitors = new AimTargetExitVisitor[]
+            {
+                new InterfaceAimTargetExitVisitor()
+            };
             
-            Container.BindInterfacesAndSelfTo<AimEnterRouter>().AsSingle().WithArguments(_listener);
+            Container.Bind<AimTargetEnterVisitor[]>().FromInstance(enterVisitors).WhenInjectedInto<AimEnterRouter>();
+            
+            Container.Bind<AimTargetExitVisitor[]>().FromInstance(exitVisitors).WhenInjectedInto<AimEnterRouter>();
+
+            Container.Bind<IAimEnterListener>().FromInstance(_listener).AsSingle();
+
+            Container.BindInterfacesAndSelfTo<AimEnterRouter>().AsSingle();
+
+            foreach (AimTargetEnterVisitor enterVisitor in enterVisitors) 
+                Container.Inject(enterVisitor);
+
+            foreach (AimTargetExitVisitor exitVisitor in exitVisitors) 
+                Container.Inject(exitVisitor);
         }
     }
 }

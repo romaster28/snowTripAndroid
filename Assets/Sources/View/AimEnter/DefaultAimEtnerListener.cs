@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections;
+using Sources.Core.AimEnter;
 using UnityEngine;
 
 namespace Sources.View.AimEnter
 {
-    public class AimEnterListener : MonoBehaviour
+    public class DefaultAimEtnerListener : MonoBehaviour, IAimEnterListener
     {
         [Min(0)] [SerializeField] private float _maxDistance = 10;
 
@@ -12,11 +13,13 @@ namespace Sources.View.AimEnter
 
         [SerializeField] private LayerMask _mask;
 
-        private AimTarget _last;
+        private DefaultAimTarget _last;
         
-        public event Action<AimTarget> OnEnter;
+        public event Action<IAimTarget> OnEnter;
 
-        public event Action<AimTarget> OnExit; 
+        public event Action<IAimTarget> OnExit;
+
+        public IAimTarget NowEntered => _last;
 
         private void OnDrawGizmos()
         {
@@ -36,7 +39,7 @@ namespace Sources.View.AimEnter
                 return;
             }
 
-            if (!hit.collider.TryGetComponent(out AimTarget target))
+            if (!hit.collider.TryGetComponent(out DefaultAimTarget target))
             {
                 TryExit();
                 
@@ -45,7 +48,7 @@ namespace Sources.View.AimEnter
 
             if (_last == target)
                 return;
-            
+
             _last = target;
             
             OnEnter?.Invoke(target);

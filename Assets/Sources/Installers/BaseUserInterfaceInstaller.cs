@@ -15,7 +15,7 @@ namespace Sources.Installers
         {
             Container.BindInterfacesAndSelfTo<TRouter>().AsSingle();
 
-            Container.Bind<ScreensFacade>().FromInstance(_screens).WhenInjectedInto<TRouter>();
+            Container.Bind<ScreensFacade>().FromInstance(_screens).AsSingle();
 
             Container.Bind<IScreenRouter[]>().FromInstance(Routers).WhenInjectedInto<TRouter>();
 
@@ -23,8 +23,6 @@ namespace Sources.Installers
             
             foreach (IScreenRouter router in Routers)
             {
-                Container.Bind<ScreensFacade>().FromInstance(_screens).WhenInjectedIntoInstance(router);
-                
                 Container.Inject(router);
             }
         }

@@ -10,16 +10,20 @@ namespace Sources.Installers.SignalInstallers
         {
             SignalBusInstaller.Install(Container);
 
-            Container.DeclareSignal<CarDoorAimEnterSignal>();
-
-            Container.DeclareSignal<CarDoorAimExitSignal>();
-
             Container.DeclareSignal<CharacterEnteredCarSignal>();
 
             Container.DeclareSignal<LeaveCarClickedSignal>();
 
             Container.DeclareSignal<CharacterLeftCarSignal>();
-            
+
+            Container.DeclareSignal<TakeItemClickedSignal>();
+
+            Container.DeclareSignal<DropItemClickedSignal>();
+
+            Container.DeclareSignal<ItemTakenSignal>();
+
+            Container.DeclareSignal<ItemDroppedSignal>();
+
             DeclareInterfaceSignals();
         }
 
