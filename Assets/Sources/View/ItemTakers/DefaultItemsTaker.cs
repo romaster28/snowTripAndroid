@@ -9,6 +9,8 @@ namespace Sources.View.ItemTakers
 {
     public class DefaultItemsTaker : MonoBehaviour, IItemsTaker
     {
+        [SerializeField] private Vector2 _offset;
+
         [Min(0)] [SerializeField] private float _distance = 5;
 
         [Inject] private readonly ItemTakeConfig _config;
@@ -21,10 +23,10 @@ namespace Sources.View.ItemTakers
 
         private Coroutine _moving;
 
-        private Vector3 PointerPosition => transform.position + transform.forward * _distance;
-        
+        private Vector3 PointerPosition => transform.position + transform.forward * _distance + transform.TransformDirection(_offset);
+
         public event Action Taken;
-        
+
         public event Action Dropped;
 
         public void Take(Rigidbody item)
@@ -37,7 +39,7 @@ namespace Sources.View.ItemTakers
             _moving = StartCoroutine(MovingAttachmentToPosition());
 
             _taken = item;
-            
+
             Taken?.Invoke();
         }
 
@@ -51,7 +53,7 @@ namespace Sources.View.ItemTakers
             _taken = null;
 
             StopCoroutine(_moving);
-            
+
             Dropped?.Invoke();
         }
 
@@ -70,7 +72,7 @@ namespace Sources.View.ItemTakers
             _attachment.slerpDrive = CreateJointDrive(_config.Force, _config.Damping);
 
             _attachment.rotationDriveMode = RotationDriveMode.Slerp;
-            
+
             item.interpolation = RigidbodyInterpolation.Interpolate;
 
             item.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
@@ -114,7 +116,7 @@ namespace Sources.View.ItemTakers
             rigidBody.position = PointerPosition;
 
             _attachment.autoConfigureConnectedAnchor = false;
-            
+
             _attachmentRigidBody = rigidBody;
         }
 
@@ -126,7 +128,8 @@ namespace Sources.View.ItemTakers
 
                 _attachmentRigidBody.rotation = transform.rotation;
 
-                yield return new WaitForFixedUpdate();;
+                yield return new WaitForFixedUpdate();
+                ;
             }
         }
     }

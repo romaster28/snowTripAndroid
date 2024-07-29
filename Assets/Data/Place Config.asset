@@ -15,5 +15,5 @@ MonoBehaviour:
   _interface:
     _disappearInteractButtonsDuration: 0.2
   _itemTake:
-    _force: 600
-    _damping: 6
+    _force: 1000
+    _damping: 10

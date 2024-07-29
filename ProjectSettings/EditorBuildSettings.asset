@@ -6,9 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Realistic Car Controller Pro/Scenes/RCCP_Scene_Blank_Prototype.unity
-    guid: c9065e9aaa96de74883b539dd3fb518f
-  - enabled: 1
-    path: Assets/FPSMobileController/Demo.unity
-    guid: 90f733bd023347e4c804fa0c1421b027
+    path: Assets/Scenes/test.unity
+    guid: 16c1d1734a66a6046baa69a93953e53b
   m_configObjects: {}
