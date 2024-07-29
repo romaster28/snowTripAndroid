@@ -1,14 +1,19 @@
 ﻿using System;
 using Sources.Core.AimEnter;
 using Sources.Core.AimEnter.Visitors;
+using Sources.Data;
 using UnityEngine;
 
 namespace Sources.View.AimEnter.AimTargets
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class PickableItem : DefaultAimTarget
+    public class Pickable : DefaultAimTarget
     {
+        [SerializeField] private PickableKey _key;
+        
         public Rigidbody RigidBody { get; private set; }
+
+        public PickableKey Key => _key;
 
         public override void Accept(AimTargetEnterVisitor visitor)
         {

@@ -41,6 +41,16 @@ namespace Sources.UserInterface.ScreenRouters
                 Screen.SetDropItemActive(false);
             });
 
+            _signalBus.Subscribe(delegate(ReadyToPlaceSignal _)
+            {
+                Screen.SetPlaceActive(true);
+            });
+            
+            _signalBus.Subscribe(delegate(ReleaseToPlaceSignal _)
+            {
+                Screen.SetPlaceActive(false);
+            });
+            
             Screen.OnEnterCarClicked += delegate
             {
                 _signalBus.Fire<EnterCarClickedSignal>();
@@ -56,11 +66,18 @@ namespace Sources.UserInterface.ScreenRouters
                 _signalBus.Fire<DropItemClickedSignal>();
             };
             
+            Screen.OnPlaceClicked += delegate
+            {
+                _signalBus.Fire<PlaceClickedSignal>();
+            };
+
             Screen.SetEnterCarActive(false);
             
             Screen.SetTakeItemActive(false);
             
             Screen.SetDropItemActive(false);
+            
+            Screen.SetPlaceActive(false);
         }
     }
 }

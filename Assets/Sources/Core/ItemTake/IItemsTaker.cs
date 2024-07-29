@@ -1,11 +1,14 @@
 ﻿using System;
+using Sources.View.AimEnter.AimTargets;
 using UnityEngine;
 
 namespace Sources.Core.ItemTake
 {
     public interface IItemsTaker
     {
-        void Take(Rigidbody rigidBody);
+        Pickable Current { get; }
+        
+        void Take(Pickable rigidBody);
 
         void DropCurrent();
 

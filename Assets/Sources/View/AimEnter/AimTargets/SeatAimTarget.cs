@@ -1,9 +1,8 @@
-﻿using Sources.Core.AimEnter;
-using Sources.Core.AimEnter.Visitors;
+﻿using Sources.Core.AimEnter.Visitors;
 
 namespace Sources.View.AimEnter.AimTargets
 {
-    public class DoorCarDefaultAimTarget : DefaultAimTarget
+    public class SeatAimTarget : DefaultAimTarget
     {
         public override void Accept(AimTargetEnterVisitor visitor)
         {

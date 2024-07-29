@@ -24,12 +24,18 @@ namespace Sources.Installers.SignalInstallers
 
             Container.DeclareSignal<ItemDroppedSignal>();
 
+            Container.DeclareSignal<ReadyToPlaceSignal>();
+
+            Container.DeclareSignal<ReleaseToPlaceSignal>();
+
             DeclareInterfaceSignals();
         }
 
         private void DeclareInterfaceSignals()
         {
             Container.DeclareSignal<EnterCarClickedSignal>();
+            
+            Container.DeclareSignal<PlaceClickedSignal>();
         }
     }
 }

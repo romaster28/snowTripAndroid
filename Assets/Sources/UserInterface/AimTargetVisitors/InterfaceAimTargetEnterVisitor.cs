@@ -11,14 +11,19 @@ namespace Sources.UserInterface.AimTargetVisitors
     {
         [Inject] private readonly ScreensFacade _screens;
         
-        public override void Visit(DoorCarDefaultAimTarget doorCarDefault)
+        public override void Visit(SeatAimTarget seatAimDefault)
         {
             _screens.Get<CharacterControlScreen>().SetEnterCarActive(true);
         }
 
-        public override void Visit(PickableItem pickableItem)
+        public override void Visit(Pickable pickable)
         {
             _screens.Get<CharacterControlScreen>().SetTakeItemActive(true);
+        }
+
+        public override void Visit(BuildingItem buildingItem)
+        {
+            
         }
     }
 }

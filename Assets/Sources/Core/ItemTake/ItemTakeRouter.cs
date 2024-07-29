@@ -18,8 +18,8 @@ namespace Sources.Core.ItemTake
         {
             _signalBus.Subscribe(delegate(TakeItemClickedSignal _)
             {
-                if (_enterListener.NowEntered is PickableItem item)
-                    _taker.Take(item.RigidBody);
+                if (_enterListener.NowEntered is Pickable item)
+                    _taker.Take(item);
             });
             
             _signalBus.Subscribe(delegate (DropItemClickedSignal _)

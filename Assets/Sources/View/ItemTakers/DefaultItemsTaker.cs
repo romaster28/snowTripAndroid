@@ -2,6 +2,7 @@
 using System.Collections;
 using Sources.Core.ItemTake;
 using Sources.Data.Place;
+using Sources.View.AimEnter.AimTargets;
 using UnityEngine;
 using Zenject;
 
@@ -19,38 +20,43 @@ namespace Sources.View.ItemTakers
 
         private Rigidbody _attachmentRigidBody;
 
-        private Rigidbody _taken;
-
         private Coroutine _moving;
 
+        public Pickable Current { get; private set; }
+        
         private Vector3 PointerPosition => transform.position + transform.forward * _distance + transform.TransformDirection(_offset);
 
         public event Action Taken;
 
         public event Action Dropped;
 
-        public void Take(Rigidbody item)
+        public void Take(Pickable pickable)
         {
-            if (_taken != null)
+            if (Current != null)
                 DropCurrent();
+            
+            Current = pickable;
+            
+            Take(pickable.RigidBody);
+        }
 
+        private void Take(Rigidbody item)
+        {
             AttachJoint(item);
 
             _moving = StartCoroutine(MovingAttachmentToPosition());
-
-            _taken = item;
 
             Taken?.Invoke();
         }
 
         public void DropCurrent()
         {
-            if (_taken == null)
+            if (Current == null)
                 throw new InvalidOperationException("No taken item yet");
 
             DeAttachJoint();
 
-            _taken = null;
+            Current = null;
 
             StopCoroutine(_moving);
 

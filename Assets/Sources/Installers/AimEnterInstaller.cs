@@ -1,5 +1,6 @@
 ﻿using Sources.Core.AimEnter;
 using Sources.Core.AimEnter.Visitors;
+using Sources.Core.ItemsPlace.AimTargetVisitors;
 using Sources.UserInterface.AimTargetVisitors;
 using Sources.View.AimEnter;
 using UnityEngine;
@@ -15,12 +16,14 @@ namespace Sources.Installers
         {
             var enterVisitors = new AimTargetEnterVisitor[]
             {
-                new InterfaceAimTargetEnterVisitor()
+                new InterfaceAimTargetEnterVisitor(),
+                new ItemPlaceAimTargetEnterVisitor()
             };
 
             var exitVisitors = new AimTargetExitVisitor[]
             {
-                new InterfaceAimTargetExitVisitor()
+                new InterfaceAimTargetExitVisitor(),
+                new ItemPlaceAimTargetExitVisitor()
             };
             
             Container.Bind<AimTargetEnterVisitor[]>().FromInstance(enterVisitors).WhenInjectedInto<AimEnterRouter>();
