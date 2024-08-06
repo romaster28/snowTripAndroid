@@ -2,7 +2,9 @@
 {
     public enum PickableKey
     {
-        Prop,
-        Wheel
+        None,
+        Wheel,
+        FrontDoor,
+        BackDoor
     }
 }

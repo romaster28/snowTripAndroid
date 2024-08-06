@@ -13,6 +13,8 @@ namespace Sources.UserInterface.ConcreteScreens.Game
         [SerializeField] private Button _dropItem;
 
         [SerializeField] private Button _place;
+
+        [SerializeField] private Button _interact;
         
         public event Action OnEnterCarClicked;
 
@@ -22,6 +24,8 @@ namespace Sources.UserInterface.ConcreteScreens.Game
 
         public event Action OnPlaceClicked;
 
+        public event Action OnInteractClicked;
+
         public void SetEnterCarActive(bool isActive) => _enterCar.gameObject.SetActive(isActive);
 
         public void SetTakeItemActive(bool isActive) => _takeItem.gameObject.SetActive(isActive);
@@ -30,8 +34,15 @@ namespace Sources.UserInterface.ConcreteScreens.Game
 
         public void SetPlaceActive(bool isActive) => _place.gameObject.SetActive(isActive);
 
+        public void SetInteractActive(bool isActive) => _interact.gameObject.SetActive(isActive);
+
         private void Start()
         {
+            _interact.onClick.AddListener(delegate
+            {
+                OnInteractClicked?.Invoke();
+            });
+            
             _place.onClick.AddListener(delegate
             {
                 OnPlaceClicked?.Invoke();

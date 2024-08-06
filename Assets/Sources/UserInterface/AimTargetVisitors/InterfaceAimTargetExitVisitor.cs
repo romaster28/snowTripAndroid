@@ -20,6 +20,11 @@ namespace Sources.UserInterface.AimTargetVisitors
             _screens.Get<CharacterControlScreen>().SetTakeItemActive(false);
         }
 
+        public override void Visit(Door door)
+        {
+            _screens.Get<CharacterControlScreen>().SetInteractActive(false);
+        }
+
         public override void Visit(BuildingItem buildingItem)
         {
             

@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Sources.View.AimEnter.AimTargets
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class Pickable : DefaultAimTarget
+    public class Pickable : BaseAimTarget
     {
         [SerializeField] private PickableKey _key;
         

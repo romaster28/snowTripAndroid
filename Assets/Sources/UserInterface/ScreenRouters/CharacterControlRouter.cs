@@ -1,8 +1,6 @@
 ﻿using Sources.Signals.Game;
 using Sources.Signals.Game.Interface;
 using Sources.UserInterface.ConcreteScreens.Game;
-using Sources.View.AimEnter;
-using Sources.View.AimEnter.AimTargets;
 using Zenject;
 
 namespace Sources.UserInterface.ScreenRouters
@@ -66,6 +64,11 @@ namespace Sources.UserInterface.ScreenRouters
                 _signalBus.Fire<DropItemClickedSignal>();
             };
             
+            Screen.OnInteractClicked += delegate
+            {
+                _signalBus.Fire<InteractClickedSignal>();
+            };
+            
             Screen.OnPlaceClicked += delegate
             {
                 _signalBus.Fire<PlaceClickedSignal>();
@@ -78,6 +81,8 @@ namespace Sources.UserInterface.ScreenRouters
             Screen.SetDropItemActive(false);
             
             Screen.SetPlaceActive(false);
+            
+            Screen.SetInteractActive(false);
         }
     }
 }

@@ -1,8 +1,6 @@
-﻿using Sources.Core.AimEnter;
-using Sources.Core.AimEnter.Visitors;
+﻿using Sources.Core.AimEnter.Visitors;
 using Sources.UserInterface.ConcreteScreens.Game;
 using Sources.View.AimEnter.AimTargets;
-using UnityEngine;
 using Zenject;
 
 namespace Sources.UserInterface.AimTargetVisitors
@@ -19,6 +17,11 @@ namespace Sources.UserInterface.AimTargetVisitors
         public override void Visit(Pickable pickable)
         {
             _screens.Get<CharacterControlScreen>().SetTakeItemActive(true);
+        }
+
+        public override void Visit(Door door)
+        {
+            _screens.Get<CharacterControlScreen>().SetInteractActive(true);
         }
 
         public override void Visit(BuildingItem buildingItem)

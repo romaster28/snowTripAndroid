@@ -24,5 +24,10 @@ namespace Sources.Core.ItemsPlace.AimTargetVisitors
         {
             _itemsPlacer.GetReadyItem(buildingItem);
         }
+
+        public override void Visit(Door door)
+        {
+            
+        }
     }
 }

@@ -36,6 +36,8 @@ namespace Sources.Installers.SignalInstallers
             Container.DeclareSignal<EnterCarClickedSignal>();
             
             Container.DeclareSignal<PlaceClickedSignal>();
+
+            Container.DeclareSignal<InteractClickedSignal>();
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Sources.View.AimEnter.AimTargets
 {
-    public class SeatAimTarget : DefaultAimTarget
+    public class SeatAimTarget : BaseAimTarget
     {
         public override void Accept(AimTargetEnterVisitor visitor)
         {

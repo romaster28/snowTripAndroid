@@ -21,8 +21,8 @@ namespace Sources.Core.ItemsPlace
         {
             if (_itemsTaker.Current == null || _itemsTaker.Current is not Pickable pickable)
                 return;
-            
-            if (pickable.Key != item.TargetPickable)
+
+            if (pickable.Key != item.TargetPickable && pickable != item.SingleTarget)
                 return;
             
             item.SetPreviewActive(true);

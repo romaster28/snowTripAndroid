@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 7312525018214397974}
   - component: {fileID: 3548891139501745543}
   - component: {fileID: 8879478381382203955}
-  - component: {fileID: 4405452751354462213}
   - component: {fileID: 5373206435171563950}
+  - component: {fileID: 4130381684640985828}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -107,26 +107,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b96de33ff1f4b064f8fb47af08d92c53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
+  _speed: 10
   _horizontal: {fileID: 7112494188604611004}
   _verticalRange: 50
---- !u!114 &4405452751354462213
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 136338677126522421}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8f1cde46659458baafe099fbcdd38aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxDistance: 3
-  _checkDelay: 0.2
-  _mask:
-    serializedVersion: 2
-    m_Bits: 257
 --- !u!114 &5373206435171563950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,7 +122,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e485df3316341f9bf691d6c7c8d1d8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _distance: 5
+  _offset: {x: 0.6, y: -0.4}
+  _distance: 1.6
+--- !u!114 &4130381684640985828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136338677126522421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09bec7c94d0a49ea86e1e884b484e336, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxDistance: 3
+  _checkDelay: 0.2
+  _mask:
+    serializedVersion: 2
+    m_Bits: 61440
+  _maximumInLine: 2
 --- !u!1 &3225884916592115472
 GameObject:
   m_ObjectHideFlags: 0
