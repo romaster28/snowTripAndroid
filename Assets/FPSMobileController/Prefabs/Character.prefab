@@ -140,7 +140,7 @@ MonoBehaviour:
   _checkDelay: 0.2
   _mask:
     serializedVersion: 2
-    m_Bits: 61440
+    m_Bits: 61568
   _maximumInLine: 2
 --- !u!1 &3225884916592115472
 GameObject:

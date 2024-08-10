@@ -1,6 +1,7 @@
 ﻿using Sources.Core.AimEnter.Visitors;
 using Sources.Signals.Game;
 using Sources.View.AimEnter;
+using UnityEngine;
 using Zenject;
 
 namespace Sources.Core.AimEnter
@@ -13,16 +14,22 @@ namespace Sources.Core.AimEnter
 
         [Inject] private readonly IAimEnterListener _listener;
 
+        [Inject] private readonly SignalBus _signalBus;
+        
         private void ListenerOnEnter(IAimTarget target)
         {
             foreach (AimTargetEnterVisitor enterVisitor in _enterVisitors) 
                 target.Accept(enterVisitor);
+            
+            _signalBus.Fire(new AimTargetEnterSignal(target));
         }
 
         private void ListenerOnExit(IAimTarget target)
         {
             foreach (AimTargetExitVisitor exitVisitor in _exitVisitors) 
                 target.Accept(exitVisitor);
+            
+            _signalBus.Fire(new AimTargetExitSignal(target));
         }
 
         public void Initialize()

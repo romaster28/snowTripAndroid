@@ -339,7 +339,7 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
   _preview: {fileID: 180160142607335935}
-  _targetPickable: 0
+  _targetPickable: 2
   _singleTarget: {fileID: 0}
 --- !u!1 &597027736658991469
 GameObject:
@@ -584,7 +584,7 @@ GameObject:
   - component: {fileID: 7282339266195988675}
   - component: {fileID: 3639319398131423156}
   - component: {fileID: 1759892372978311957}
-  m_Layer: 8
+  m_Layer: 15
   m_Name: Lowpoly Van With Interior 6_04_Door1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1055,7 +1055,7 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
   _preview: {fileID: 6224320613360938720}
-  _targetPickable: 0
+  _targetPickable: 2
   _singleTarget: {fileID: 0}
 --- !u!1 &1429400459664072047
 GameObject:
@@ -2170,7 +2170,7 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
   _preview: {fileID: 5587254808003895751}
-  _targetPickable: 0
+  _targetPickable: 3
   _singleTarget: {fileID: 0}
 --- !u!1 &3079495439357419587
 GameObject:
@@ -2296,7 +2296,7 @@ GameObject:
   - component: {fileID: 1532953442834019190}
   - component: {fileID: 1364941685770824295}
   - component: {fileID: 2422469431910068093}
-  m_Layer: 8
+  m_Layer: 15
   m_Name: Lowpoly Van With Interior 6_04_Door2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2629,7 +2629,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9081040555705948932}
   - component: {fileID: 6368699408524734077}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RCCP_FuelTank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2665,7 +2665,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   completeSetup: 0
   checkedSetup: 0
-  fuelTankCapacity: 60
+  fuelTankCapacity: 1
   fuelTankFillAmount: 0
   fuelConsumption: 20
   currentFuelConsumption: 0
@@ -3329,7 +3329,7 @@ GameObject:
   - component: {fileID: 5643784682453717266}
   - component: {fileID: 8690970880151026464}
   - component: {fileID: 9155895479964226267}
-  m_Layer: 8
+  m_Layer: 15
   m_Name: Lowpoly Van With Interior 6_04_Door5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3795,7 +3795,7 @@ MonoBehaviour:
   completeSetup: 1
   checkedSetup: 0
   overrideEngineRPM: 0
-  engineRunning: 1
+  engineRunning: 0
   engineStarting: 0
   engineRPM: 0
   minEngineRPM: 750
@@ -4239,7 +4239,7 @@ GameObject:
   - component: {fileID: 2210124252622061937}
   - component: {fileID: 728993937742162123}
   - component: {fileID: 9214442656648616002}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: backRightPlacer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4338,7 +4338,7 @@ GameObject:
   - component: {fileID: 8913836551756627398}
   - component: {fileID: 7730707197866584528}
   - component: {fileID: 8094011463993850385}
-  m_Layer: 8
+  m_Layer: 15
   m_Name: Lowpoly Van With Interior 6_04_Door3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4841,7 +4841,7 @@ GameObject:
   - component: {fileID: 7687392946853149035}
   - component: {fileID: 4914050975525132214}
   - component: {fileID: 6019129612296681135}
-  m_Layer: 8
+  m_Layer: 15
   m_Name: Lowpoly Van With Interior 6_04_Door4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5265,7 +5265,7 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
   _preview: {fileID: 5070589353861158659}
-  _targetPickable: 0
+  _targetPickable: 3
   _singleTarget: {fileID: 0}
 --- !u!1 &6524726028405554683
 GameObject:
@@ -5701,7 +5701,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cf317fb225401544af36ece7844c596, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  completeSetup: 0
+  completeSetup: 1
   checkedSetup: 0
   overrideGear: 0
   gearRatios:
@@ -5757,7 +5757,7 @@ GameObject:
   - component: {fileID: 3029455904229876270}
   - component: {fileID: 2437055179784728413}
   - component: {fileID: 6754972196504254311}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: backLeftPlacer
   m_TagString: Untagged
   m_Icon: {fileID: 0}

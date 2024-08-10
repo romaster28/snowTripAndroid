@@ -6,13 +6,13 @@ namespace Sources.UserInterface
     {
         [Inject] protected readonly ScreensFacade Screens;
 
-        [Inject] private readonly IScreenRouter[] _screenRouters;
+        [Inject] private readonly IElementRouter[] _screenRouters;
         
         protected abstract bool CloseAllScreensOnStart { get; }
         
         public void Initialize()
         {
-            foreach (IScreenRouter screenRouter in _screenRouters) 
+            foreach (IElementRouter screenRouter in _screenRouters) 
                 screenRouter.Initialize();
 
             Screens.CloseAll();

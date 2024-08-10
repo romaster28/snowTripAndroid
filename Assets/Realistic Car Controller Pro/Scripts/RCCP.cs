@@ -31,7 +31,7 @@ public class RCCP {
         if (isEngineRunning)
             spawnedRCC.StartEngine();
         else
-            spawnedRCC.KillEngine();
+            spawnedRCC.StopEngine();
 
         return spawnedRCC;
 
@@ -99,7 +99,7 @@ public class RCCP {
         if (engineState)
             vehicle.StartEngine();
         else
-            vehicle.KillEngine();
+            vehicle.StopEngine();
 
     }
 

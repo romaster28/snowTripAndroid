@@ -1,6 +1,6 @@
 ﻿namespace Sources.UserInterface
 {
-    public interface IScreenRouter
+    public interface IElementRouter
     {
         void Initialize();
     }

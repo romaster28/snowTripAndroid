@@ -17,3 +17,6 @@ MonoBehaviour:
   _itemTake:
     _force: 1000
     _damping: 10
+  _fillGas:
+    _amountPerStep: 1
+    _stepDelay: 0.2

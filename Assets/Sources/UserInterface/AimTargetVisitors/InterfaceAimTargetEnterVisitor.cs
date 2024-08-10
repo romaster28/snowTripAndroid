@@ -24,6 +24,11 @@ namespace Sources.UserInterface.AimTargetVisitors
             _screens.Get<CharacterControlScreen>().SetInteractActive(true);
         }
 
+        public override void Visit(GasTank gasTank)
+        {
+            
+        }
+
         public override void Visit(BuildingItem buildingItem)
         {
             

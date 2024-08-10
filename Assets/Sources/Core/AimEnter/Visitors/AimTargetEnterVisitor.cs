@@ -11,5 +11,7 @@ namespace Sources.Core.AimEnter.Visitors
         public abstract void Visit(BuildingItem buildingItem);
 
         public abstract void Visit(Door door);
+
+        public abstract void Visit(GasTank gasTank);
     }
 }

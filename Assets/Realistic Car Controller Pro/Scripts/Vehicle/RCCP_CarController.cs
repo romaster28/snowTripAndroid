@@ -1,7 +1,7 @@
 //----------------------------------------------
 //        Realistic Car Controller Pro
 //
-// Copyright © 2014 - 2024 BoneCracker Games
+// Copyright Â© 2014 - 2024 BoneCracker Games
 // https://www.bonecrackergames.com
 // Ekrem Bugra Ozdoganlar
 //
@@ -591,7 +591,7 @@ public class RCCP_CarController : RCCP_MainComponent {
     /// <summary>
     /// Kills the engine.
     /// </summary>
-    public void KillEngine() {
+    public void StopEngine() {
 
         if (Engine)
             Engine.engineRunning = false;

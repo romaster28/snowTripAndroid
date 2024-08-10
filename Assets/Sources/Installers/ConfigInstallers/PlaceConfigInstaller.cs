@@ -10,10 +10,12 @@ namespace Sources.Installers.ConfigInstallers
         [SerializeField] private PlaceInterfaceConfig _interface;
 
         [SerializeField] private ItemTakeConfig _itemTake;
+
+        [SerializeField] private FillGasConfig _fillGas;
         
         public override void InstallBindings()
         {
-            Container.BindInstances(_interface, _itemTake);
+            Container.BindInstances(_interface, _itemTake, _fillGas);
         }
     }
 }

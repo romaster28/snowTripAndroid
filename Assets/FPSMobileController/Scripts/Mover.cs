@@ -18,8 +18,6 @@ namespace FPSMobileController.Scripts
 
         private void OnMoveReceivedX(InputActionEventData data) 
         {
-            print("Fixed");
-            
             MoveToDirection(new Vector2(data.GetAxis(), 0f));
         }
 

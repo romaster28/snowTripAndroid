@@ -9,9 +9,11 @@ namespace Sources.Installers
     {
         [SerializeField] private GameObject _character;
 
+        [SerializeField] private Camera _camera;
+
         public override void InstallBindings()
         {
-            Container.Bind<ICharacter>().To<FpsMobileCharacter>().AsSingle().WithArguments(_character);
+            Container.Bind<ICharacter>().To<FpsMobileCharacter>().AsSingle().WithArguments(_character, _camera);
         }
     }
 }

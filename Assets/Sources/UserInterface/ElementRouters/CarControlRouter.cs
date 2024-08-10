@@ -3,9 +3,9 @@ using Sources.Signals.Game.Interface;
 using Sources.UserInterface.ConcreteScreens.Game;
 using Zenject;
 
-namespace Sources.UserInterface.ScreenRouters
+namespace Sources.UserInterface.ElementRouters
 {
-    public class CarControlRouter : IScreenRouter
+    public class CarControlRouter : IElementRouter
     {
         [Inject] private readonly ScreensFacade _screens;
 

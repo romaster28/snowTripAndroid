@@ -12,6 +12,8 @@ namespace Sources.View.AimEnter.ConcreteAimEnterListeners
 
         private List<IAimTarget> _entered;
 
+        private List<IAimTarget> _justEntered;
+
         private RaycastHit[] _hits;
 
         public override IEnumerable<IAimTarget> GetEntered() => _entered;
@@ -28,27 +30,23 @@ namespace Sources.View.AimEnter.ConcreteAimEnterListeners
 
             _cacheEnter.Clear();
             
+            _justEntered.Clear();
+            
             for (int i = 0; i < castedCount; i++)
             {
-                var hit = _hits[i];
+                RaycastHit hit = _hits[i];
 
                 if (!hit.collider.TryGetComponent(out BaseAimTarget target))
-                {
                     continue;
-                }
 
+                _cacheEnter.Add(target);
+                
                 if (_entered.Contains(target))
-                {
-                    
-                    
-                    _cacheEnter.Add(target);
-                    
                     continue;
-                }
 
                 _entered.Add(target);
                 
-                _cacheEnter.Add(target);
+                _justEntered.Add(target);
             }
 
             for (int i = 0; i < _entered.Count; i++)
@@ -56,15 +54,16 @@ namespace Sources.View.AimEnter.ConcreteAimEnterListeners
                 BaseAimTarget target = (BaseAimTarget) _entered[i];
 
                 if (_cacheEnter.Contains(target))
-                {
-                    SendEnter(target);
-                    
                     continue;
-                }
 
                 _entered.Remove(target);
                     
                 SendExit(target);
+            }
+
+            foreach (IAimTarget justEntered in _justEntered)
+            {
+                SendEnter(justEntered);
             }
         }
 
@@ -75,6 +74,8 @@ namespace Sources.View.AimEnter.ConcreteAimEnterListeners
             _entered = new List<IAimTarget>(_maximumInLine);
 
             _cacheEnter = new List<IAimTarget>(_maximumInLine);
+
+            _justEntered = new List<IAimTarget>(_maximumInLine);
         }
     }
 }

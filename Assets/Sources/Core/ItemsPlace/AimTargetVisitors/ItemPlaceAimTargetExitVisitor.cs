@@ -27,5 +27,10 @@ namespace Sources.Core.ItemsPlace.AimTargetVisitors
         {
             
         }
+
+        public override void Visit(GasTank gasTank)
+        {
+            
+        }
     }
 }

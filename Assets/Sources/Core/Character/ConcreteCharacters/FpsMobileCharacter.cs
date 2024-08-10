@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Sources.Core.Character.ConcreteCharacters
 {
@@ -6,9 +7,12 @@ namespace Sources.Core.Character.ConcreteCharacters
     {
         private readonly GameObject _character;
 
-        public FpsMobileCharacter(GameObject character)
+        public Camera Camera { get; }
+
+        public FpsMobileCharacter(GameObject character, Camera camera)
         {
             _character = character;
+            Camera = camera ? camera : throw new ArgumentNullException(nameof(camera));
         }
 
         public void Hide()

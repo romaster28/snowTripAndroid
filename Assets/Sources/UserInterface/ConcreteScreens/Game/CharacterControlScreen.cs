@@ -1,4 +1,5 @@
 ﻿using System;
+using Sources.UserInterface.Elements.Game;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,7 +16,11 @@ namespace Sources.UserInterface.ConcreteScreens.Game
         [SerializeField] private Button _place;
 
         [SerializeField] private Button _interact;
-        
+
+        [SerializeField] private TankFillPanel _tankFillPanel;
+
+        public TankFillPanel TankFillPanel => _tankFillPanel;
+
         public event Action OnEnterCarClicked;
 
         public event Action OnTakeItemClicked;

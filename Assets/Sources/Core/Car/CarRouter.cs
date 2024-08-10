@@ -24,7 +24,7 @@ namespace Sources.Core.Car
 
         private void OnEnterCarClicked()
         {
-            _car.Activate();
+            _car.Enter();
             
             _character.Hide();
             
@@ -33,7 +33,7 @@ namespace Sources.Core.Car
 
         private void OnLeaveCarClicked()
         {
-            _car.DeActivate();
+            _car.Exit();
             
             _character.ShowAtPosition(_leavePointDetector.GetFirstFreePosition());
             

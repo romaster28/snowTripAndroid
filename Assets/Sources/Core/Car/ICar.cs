@@ -1,9 +1,15 @@
-﻿namespace Sources.Core.Car
+﻿using UnityEngine;
+
+namespace Sources.Core.Car
 {
     public interface ICar
     {
-        void Activate();
+        void Enter();
 
-        void DeActivate();
+        void Exit();
+
+        bool Entered { get; }
+
+        Camera InsideCamera { get; }
     }
 }

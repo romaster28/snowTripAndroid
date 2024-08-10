@@ -28,6 +28,10 @@ namespace Sources.Installers.SignalInstallers
 
             Container.DeclareSignal<ReleaseToPlaceSignal>();
 
+            Container.DeclareSignal<AimTargetEnterSignal>();
+
+            Container.DeclareSignal<AimTargetExitSignal>();
+
             DeclareInterfaceSignals();
         }
 

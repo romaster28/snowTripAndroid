@@ -3,9 +3,9 @@ using Sources.Signals.Game.Interface;
 using Sources.UserInterface.ConcreteScreens.Game;
 using Zenject;
 
-namespace Sources.UserInterface.ScreenRouters
+namespace Sources.UserInterface.ElementRouters
 {
-    public class CharacterControlRouter : IScreenRouter
+    public class CharacterControlRouter : IElementRouter
     {
         [Inject] private readonly SignalBus _signalBus;
 

@@ -1,5 +1,6 @@
 ﻿using Sources.Core.ItemsClean;
 using Sources.Core.ItemTake;
+using Sources.Data;
 using Sources.Signals.Game;
 using Sources.View.AimEnter.AimTargets;
 using UnityEngine;
@@ -22,9 +23,12 @@ namespace Sources.Core.ItemsPlace
             if (_itemsTaker.Current == null || _itemsTaker.Current is not Pickable pickable)
                 return;
 
-            if (pickable.Key != item.TargetPickable && pickable != item.SingleTarget)
+            if (item.SingleTarget != null && item.SingleTarget != pickable)
                 return;
-            
+
+            if (item.TargetPickable != PickableKey.None && item.TargetPickable != pickable.Key)
+                return;
+
             item.SetPreviewActive(true);
 
             _ready = item;

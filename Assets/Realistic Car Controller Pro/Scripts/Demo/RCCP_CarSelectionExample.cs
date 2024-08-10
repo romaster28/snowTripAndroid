@@ -180,7 +180,7 @@ public class RCCP_CarSelectionExample : RCCP_GenericComponent {
         spawnedVehicles[selectedIndex].transform.SetPositionAndRotation(spawnPosition.position, spawnPosition.rotation);
 
         // Kills engine and disables controllable.
-        spawnedVehicles[selectedIndex].KillEngine();
+        spawnedVehicles[selectedIndex].StopEngine();
         spawnedVehicles[selectedIndex].SetCanControl(false);
 
         // Resets the velocity of the vehicle.
