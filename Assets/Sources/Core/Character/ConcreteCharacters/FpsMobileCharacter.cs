@@ -8,10 +8,13 @@ namespace Sources.Core.Character.ConcreteCharacters
         private readonly GameObject _character;
 
         public Camera Camera { get; }
+        
+        public Collider Collider { get; }
 
-        public FpsMobileCharacter(GameObject character, Camera camera)
+        public FpsMobileCharacter(GameObject character, Camera camera, Collider collider)
         {
             _character = character;
+            Collider = collider;
             Camera = camera ? camera : throw new ArgumentNullException(nameof(camera));
         }
 

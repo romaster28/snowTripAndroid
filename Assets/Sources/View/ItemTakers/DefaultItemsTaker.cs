@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Sources.Core.Character;
 using Sources.Core.ItemTake;
 using Sources.Data.Place;
 using Sources.View.AimEnter.AimTargets;
@@ -14,6 +15,8 @@ namespace Sources.View.ItemTakers
 
         [Min(0)] [SerializeField] private float _distance = 5;
 
+        [SerializeField] private Collider _ignoreOnTake;
+        
         [Inject] private readonly ItemTakeConfig _config;
 
         private ConfigurableJoint _attachment;
@@ -45,6 +48,8 @@ namespace Sources.View.ItemTakers
             AttachJoint(item);
 
             _moving = StartCoroutine(MovingAttachmentToPosition());
+            
+            Physics.IgnoreCollision(item.GetComponent<Collider>(), _ignoreOnTake, true);
 
             Taken?.Invoke();
         }
@@ -54,6 +59,8 @@ namespace Sources.View.ItemTakers
             if (Current == null)
                 throw new InvalidOperationException("No taken item yet");
 
+            Physics.IgnoreCollision(Current.GetComponent<Collider>(), _ignoreOnTake, false);
+            
             DeAttachJoint();
 
             Current = null;
@@ -100,13 +107,6 @@ namespace Sources.View.ItemTakers
             return drive;
         }
 
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.green;
-
-            Gizmos.DrawSphere(PointerPosition, .2f);
-        }
-
         private void Start()
         {
             var rigidBody = new GameObject("Take Item Attachment").AddComponent<Rigidbody>();
@@ -135,8 +135,14 @@ namespace Sources.View.ItemTakers
                 _attachmentRigidBody.rotation = transform.rotation;
 
                 yield return new WaitForFixedUpdate();
-                ;
             }
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.green;
+
+            Gizmos.DrawSphere(PointerPosition, .2f);
         }
     }
 }

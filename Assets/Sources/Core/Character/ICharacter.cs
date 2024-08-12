@@ -7,7 +7,9 @@ namespace Sources.Core.Character
         void Hide();
 
         void ShowAtPosition(Vector3 position);
-        
+
         Camera Camera { get; }
+        
+        Collider Collider { get; }
     }
 }

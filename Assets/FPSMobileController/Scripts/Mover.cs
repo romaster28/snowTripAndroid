@@ -9,21 +9,25 @@ namespace FPSMobileController.Scripts
     {
         [Min(0)] [SerializeField] private float _speed = 3;
 
+        [SerializeField] private Transform _camera;
+        
         private CharacterController _characterController;
+
+        private Vector3 _current;
 
         public void MoveToDirection(Vector3 direction)
         {
-            _characterController.Move(transform.TransformDirection(direction) * (_speed * Time.deltaTime));
+            // _characterController.SimpleMove(transform.TransformDirection(direction) * (_speed * Time.fixedDeltaTime));
         }
 
-        private void OnMoveReceivedX(InputActionEventData data) 
+        private void OnMoveReceivedX(InputActionEventData data)
         {
-            MoveToDirection(new Vector2(data.GetAxis(), 0f));
+            _current.x = data.GetAxis();
         }
 
-        private void OnMoveReceivedY(InputActionEventData data) 
+        private void OnMoveReceivedY(InputActionEventData data)
         {
-            MoveToDirection(new Vector3(0, 0, data.GetAxis()));
+            _current.z = data.GetAxis();
         }
 
         private void Awake()
@@ -38,18 +42,23 @@ namespace FPSMobileController.Scripts
             if (player == null)
                 return;
 
-            player.AddInputEventDelegate(OnMoveReceivedX, UpdateLoopType.Update, InputActionEventType.AxisActive, "Horizontal");
+            player.AddInputEventDelegate(OnMoveReceivedX, UpdateLoopType.Update, InputActionEventType.AxisActiveOrJustInactive, "Horizontal");
             
-            player.AddInputEventDelegate(OnMoveReceivedY, UpdateLoopType.Update, InputActionEventType.AxisActive, "Vertical");
+            player.AddInputEventDelegate(OnMoveReceivedY, UpdateLoopType.Update, InputActionEventType.AxisActiveOrJustInactive, "Vertical");
+        }
+
+        private void FixedUpdate()
+        {
+            _characterController.SimpleMove(_camera.TransformDirection(_current) * (_speed * Time.fixedDeltaTime));
         }
 
         private void OnDisable()
         {
             Player player = ReInput.players.GetPlayer(0);
             
-            player.RemoveInputEventDelegate(OnMoveReceivedX, UpdateLoopType.Update, InputActionEventType.AxisActive, "Horizontal");
+            player.RemoveInputEventDelegate(OnMoveReceivedX, UpdateLoopType.Update, InputActionEventType.AxisActiveOrJustInactive, "Horizontal");
             
-            player.RemoveInputEventDelegate(OnMoveReceivedY, UpdateLoopType.Update, InputActionEventType.AxisActive, "Vertical");
+            player.RemoveInputEventDelegate(OnMoveReceivedY, UpdateLoopType.Update, InputActionEventType.AxisActiveOrJustInactive, "Vertical");
         }
     }
 }

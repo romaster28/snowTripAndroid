@@ -15,8 +15,8 @@ MonoBehaviour:
   _interface:
     _disappearInteractButtonsDuration: 0.2
   _itemTake:
-    _force: 1000
-    _damping: 10
+    _force: 750
+    _damping: 50
   _fillGas:
     _amountPerStep: 1
     _stepDelay: 0.2

@@ -2,6 +2,7 @@
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Sources.Editor
 {
@@ -13,17 +14,20 @@ namespace Sources.Editor
             if (!Application.isPlaying)
                 return;
 
-            GameObject selected = Selection.activeObject.GameObject();
+            var allRootObjects = SceneManager.GetActiveScene().GetRootGameObjects();
 
-            var allChildren = selected.transform.GetAllChildren();
-
-            foreach (GameObject children in allChildren)
+            foreach (GameObject rootObject in allRootObjects)
             {
-                if (children.TryGetComponent<BuildingItem>(out var item))
+                var allChildren = rootObject.transform.GetAllChildren();
+
+                foreach (GameObject children in allChildren)
                 {
-                    item.GameObject().SetActive(false);
+                    if (children.TryGetComponent<BuildingItem>(out var item))
+                    {
+                        item.GameObject().SetActive(false);
                     
-                    item.Built?.Invoke();
+                        item.Built?.Invoke();
+                    }
                 }
             }
         }

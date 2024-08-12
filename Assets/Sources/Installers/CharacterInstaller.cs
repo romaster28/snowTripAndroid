@@ -11,9 +11,11 @@ namespace Sources.Installers
 
         [SerializeField] private Camera _camera;
 
+        [SerializeField] private Collider _collider;
+
         public override void InstallBindings()
         {
-            Container.Bind<ICharacter>().To<FpsMobileCharacter>().AsSingle().WithArguments(_character, _camera);
+            Container.Bind<ICharacter>().To<FpsMobileCharacter>().AsSingle().WithArguments(_character, _camera, _collider);
         }
     }
 }
