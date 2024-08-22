@@ -9,11 +9,19 @@ namespace FPSMobileController.Scripts
     {
         [Min(0)] [SerializeField] private float _speed = 3;
 
+        [Min(0)] [SerializeField] private float _sprintSpeed = 6;
+
         [SerializeField] private Transform _camera;
-        
+
         private CharacterController _characterController;
 
         private Vector3 _current;
+
+        private float CorrectedSpeed => IsSprint ? _sprintSpeed : _speed;
+        
+        public bool IsSprint { get; set; }
+
+        public bool IsMoving => _current != Vector3.zero;
 
         public void MoveToDirection(Vector3 direction)
         {
@@ -42,23 +50,33 @@ namespace FPSMobileController.Scripts
             if (player == null)
                 return;
 
-            player.AddInputEventDelegate(OnMoveReceivedX, UpdateLoopType.Update, InputActionEventType.AxisActiveOrJustInactive, "Horizontal");
-            
-            player.AddInputEventDelegate(OnMoveReceivedY, UpdateLoopType.Update, InputActionEventType.AxisActiveOrJustInactive, "Vertical");
+            player.AddInputEventDelegate(OnMoveReceivedX, UpdateLoopType.Update,
+                InputActionEventType.AxisActiveOrJustInactive, "Horizontal");
+
+            player.AddInputEventDelegate(OnMoveReceivedY, UpdateLoopType.Update,
+                InputActionEventType.AxisActiveOrJustInactive, "Vertical");
         }
 
         private void FixedUpdate()
         {
-            _characterController.SimpleMove(_camera.TransformDirection(_current) * (_speed * Time.fixedDeltaTime));
+            _characterController.SimpleMove(_camera.TransformDirection(_current) * (CorrectedSpeed * Time.fixedDeltaTime));
         }
 
         private void OnDisable()
         {
             Player player = ReInput.players.GetPlayer(0);
-            
-            player.RemoveInputEventDelegate(OnMoveReceivedX, UpdateLoopType.Update, InputActionEventType.AxisActiveOrJustInactive, "Horizontal");
-            
-            player.RemoveInputEventDelegate(OnMoveReceivedY, UpdateLoopType.Update, InputActionEventType.AxisActiveOrJustInactive, "Vertical");
+
+            player.RemoveInputEventDelegate(OnMoveReceivedX, UpdateLoopType.Update,
+                InputActionEventType.AxisActiveOrJustInactive, "Horizontal");
+
+            player.RemoveInputEventDelegate(OnMoveReceivedY, UpdateLoopType.Update,
+                InputActionEventType.AxisActiveOrJustInactive, "Vertical");
+        }
+
+        private void OnValidate()
+        {
+            if (_sprintSpeed < _speed)
+                _sprintSpeed = _speed;
         }
     }
 }

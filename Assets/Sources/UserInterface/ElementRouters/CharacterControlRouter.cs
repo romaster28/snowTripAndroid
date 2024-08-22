@@ -1,4 +1,5 @@
-﻿using Sources.Signals.Game;
+﻿using Sources.Core.Character;
+using Sources.Signals.Game;
 using Sources.Signals.Game.Interface;
 using Sources.UserInterface.ConcreteScreens.Game;
 using Zenject;
@@ -11,12 +12,16 @@ namespace Sources.UserInterface.ElementRouters
 
         [Inject] private readonly ScreensFacade _screens;
 
-        [Inject] private readonly ElementEnterShower _shower;
+        [Inject] private readonly Sprint _sprint;
 
         private CharacterControlScreen Screen => _screens.Get<CharacterControlScreen>();
 
         public void Initialize()
         {
+            Screen.Sprint.OnDown += _sprint.Activate;
+
+            Screen.Sprint.OnUp += _sprint.DeActivate;
+            
             _signalBus.Subscribe(delegate(CharacterEnteredCarSignal _)
             {
                 Screen.SetEnterCarActive(false);

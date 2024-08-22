@@ -1,4 +1,6 @@
-﻿using Sources.Misc;
+﻿using Sources.Core.Time;
+using Sources.Core.Time.ConcreteTimeChangers;
+using Sources.Misc;
 using Zenject;
 
 namespace Sources.Installers
@@ -8,6 +10,10 @@ namespace Sources.Installers
         public override void InstallBindings()
         {
             Container.Bind<AsyncProcessor>().FromNewComponentOnNewGameObject().AsSingle();
+
+            Container.Bind<ITimeChanger>().To<DefaultTimeChanger>().AsSingle();
+
+            Container.BindInterfacesAndSelfTo<TimeStopper>().AsSingle();
         }
     }
 }

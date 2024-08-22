@@ -1,4 +1,5 @@
 ﻿using System;
+using Sources.UserInterface.Elements.Common;
 using Sources.UserInterface.Elements.Game;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,7 +20,15 @@ namespace Sources.UserInterface.ConcreteScreens.Game
 
         [SerializeField] private TankFillPanel _tankFillPanel;
 
+        [SerializeField] private StatsView _statsView;
+
+        [SerializeField] private Clickable _sprint;
+
         public TankFillPanel TankFillPanel => _tankFillPanel;
+
+        public StatsView StatsView => _statsView;
+
+        public Clickable Sprint => _sprint;
 
         public event Action OnEnterCarClicked;
 
@@ -30,7 +39,7 @@ namespace Sources.UserInterface.ConcreteScreens.Game
         public event Action OnPlaceClicked;
 
         public event Action OnInteractClicked;
-
+        
         public void SetEnterCarActive(bool isActive) => _enterCar.gameObject.SetActive(isActive);
 
         public void SetTakeItemActive(bool isActive) => _takeItem.gameObject.SetActive(isActive);

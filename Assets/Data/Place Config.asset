@@ -20,3 +20,13 @@ MonoBehaviour:
   _fillGas:
     _amountPerStep: 1
     _stepDelay: 0.2
+  _sprint:
+    _takeAmount: 3
+    _takeDelay: 0.2
+    _healAmount: 3
+    _healDelay: 0.4
+  _cold:
+    _addValue: 1
+    _addDelay: 2
+    _healValue: 1
+    _healDelay: 0.5

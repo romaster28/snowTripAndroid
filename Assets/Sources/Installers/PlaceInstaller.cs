@@ -28,6 +28,8 @@ namespace Sources.Installers
             Container.BindInterfacesAndSelfTo<CarRouter>().AsSingle().WithArguments(_leavePointDetector);
 
             Container.Bind<ActiveCamera>().AsSingle();
+
+            Container.BindInterfacesAndSelfTo<Place>().AsSingle();
         }
     }
 }

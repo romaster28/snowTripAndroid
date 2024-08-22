@@ -32,6 +32,8 @@ namespace Sources.Installers.SignalInstallers
 
             Container.DeclareSignal<AimTargetExitSignal>();
 
+            Container.DeclareSignal<PlayerDeadSignal>();
+
             DeclareInterfaceSignals();
         }
 
