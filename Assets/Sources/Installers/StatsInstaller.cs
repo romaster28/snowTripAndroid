@@ -1,5 +1,7 @@
-﻿using Sources.Core.Stats;
+﻿using Sources.Core.Die;
+using Sources.Core.Stats;
 using Sources.Core.Stats.ConcreteStats;
+using Sources.Core.Temperature;
 using Zenject;
 
 namespace Sources.Installers
@@ -16,6 +18,10 @@ namespace Sources.Installers
             }).WhenInjectedInto<StatsGetter>();
 
             Container.Bind<StatsGetter>().AsSingle();
+            
+            Container.BindInterfacesAndSelfTo<Cold>().AsSingle();
+            
+            Container.BindInterfacesAndSelfTo<DieSender>().AsSingle();
         }
     }
 }

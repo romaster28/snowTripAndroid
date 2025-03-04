@@ -1,4 +1,5 @@
 ﻿using Sources.View.AimEnter.AimTargets;
+using Sources.View.AimEnter.AimTargets.Weapons;
 
 namespace Sources.Core.AimEnter.Visitors
 {
@@ -13,5 +14,7 @@ namespace Sources.Core.AimEnter.Visitors
         public abstract void Visit(Door door);
 
         public abstract void Visit(GasTank gasTank);
+
+        public abstract void Visit(Weapon weapon);
     }
 }

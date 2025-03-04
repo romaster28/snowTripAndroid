@@ -1,6 +1,7 @@
 ﻿using Sources.Core.AimEnter.Visitors;
 using Sources.Core.ItemTake;
 using Sources.View.AimEnter.AimTargets;
+using Sources.View.AimEnter.AimTargets.Weapons;
 using UnityEngine;
 using Zenject;
 
@@ -31,6 +32,11 @@ namespace Sources.Core.ItemsPlace.AimTargetVisitors
         }
 
         public override void Visit(GasTank gasTank)
+        {
+            
+        }
+
+        public override void Visit(Weapon weapon)
         {
             
         }

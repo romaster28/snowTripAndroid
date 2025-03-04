@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DG.Tweening;
 using Sources.Core.Stats;
 using Sources.Core.Stats.ConcreteStats;
 using UnityEngine;
@@ -16,6 +17,8 @@ namespace Sources.UserInterface.Elements.Game
 
         [SerializeField] private Slider _cold;
 
+        private const float Duration = 1.5f;
+
         private Dictionary<Type, Slider> Registered => new()
         {
             { typeof(HealthStat), _health },
@@ -25,6 +28,13 @@ namespace Sources.UserInterface.Elements.Game
 
         public void Update<T>(float amount01) where T : BaseStat => Registered[typeof(T)].value = amount01;
 
-        public void Update(IReadOnlyBaseStat baseStat) => Registered[baseStat.GetType()].value = baseStat.Amount01;
+        public void Update(IReadOnlyBaseStat baseStat)
+        {
+            Slider target = Registered[baseStat.GetType()];
+
+            target.DOKill();
+            
+            target.DOValue(baseStat.Amount01, Duration);
+        }
     }
 }

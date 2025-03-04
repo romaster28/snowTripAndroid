@@ -1,6 +1,7 @@
 ﻿using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Sources.UserInterface.Elements.Common
 {
@@ -11,6 +12,8 @@ namespace Sources.UserInterface.Elements.Common
 
         [SerializeField] private string _format;
 
+        public Graphic View => _view;
+        
         public void Update<T>(T value) => Update(value.ToString());
 
         public void Update<T>(T value1, T value2) => Update(value1.ToString(), value2.ToString());

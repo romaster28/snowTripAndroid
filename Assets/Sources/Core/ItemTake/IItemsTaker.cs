@@ -12,8 +12,8 @@ namespace Sources.Core.ItemTake
 
         void DropCurrent();
 
-        event Action Taken;
+        event Action<Pickable> Taken;
 
-        event Action Dropped;
+        event Action<Pickable> Dropped;
     }
 }

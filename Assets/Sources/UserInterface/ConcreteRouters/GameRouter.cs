@@ -9,6 +9,8 @@ namespace Sources.UserInterface.ConcreteRouters
         protected override void OnInitialized()
         {
             Screens.Open<CharacterControlScreen>();
+            
+            Screens.Open<TutorialScreen>();
         }
     }
 }

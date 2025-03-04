@@ -26,12 +26,12 @@ namespace Sources.View.ItemTakers
         private Coroutine _moving;
 
         public Pickable Current { get; private set; }
-        
+
         private Vector3 PointerPosition => transform.position + transform.forward * _distance + transform.TransformDirection(_offset);
 
-        public event Action Taken;
-
-        public event Action Dropped;
+        public event Action<Pickable> Taken;
+        
+        public event Action<Pickable> Dropped;
 
         public void Take(Pickable pickable)
         {
@@ -39,19 +39,10 @@ namespace Sources.View.ItemTakers
                 DropCurrent();
             
             Current = pickable;
+
+            ControlPhysic(pickable.RigidBody);
             
-            Take(pickable.RigidBody);
-        }
-
-        private void Take(Rigidbody item)
-        {
-            AttachJoint(item);
-
-            _moving = StartCoroutine(MovingAttachmentToPosition());
-            
-            Physics.IgnoreCollision(item.GetComponent<Collider>(), _ignoreOnTake, true);
-
-            Taken?.Invoke();
+            Taken?.Invoke(Current);
         }
 
         public void DropCurrent()
@@ -63,11 +54,20 @@ namespace Sources.View.ItemTakers
             
             DeAttachJoint();
 
+            Dropped?.Invoke(Current);
+            
             Current = null;
 
             StopCoroutine(_moving);
+        }
 
-            Dropped?.Invoke();
+        private void ControlPhysic(Rigidbody item)
+        {
+            AttachJoint(item);
+
+            _moving = StartCoroutine(MovingAttachmentToPosition());
+            
+            Physics.IgnoreCollision(item.GetComponent<Collider>(), _ignoreOnTake, true);
         }
 
         private void AttachJoint(Rigidbody item)

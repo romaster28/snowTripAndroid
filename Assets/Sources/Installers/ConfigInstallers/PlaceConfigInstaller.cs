@@ -16,10 +16,12 @@ namespace Sources.Installers.ConfigInstallers
         [SerializeField] private SprintConfig _sprint;
 
         [SerializeField] private ColdConfig _cold;
+
+        [SerializeField] private ShootConfig _shoot;
         
         public override void InstallBindings()
         {
-            Container.BindInstances(_interface, _itemTake, _fillGas, _sprint, _cold);
+            Container.BindInstances(_interface, _itemTake, _fillGas, _sprint, _cold, _shoot);
         }
     }
 }

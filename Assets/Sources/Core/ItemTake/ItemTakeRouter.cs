@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Sources.Core.AimEnter;
+﻿using Sources.Core.AimEnter;
 using Sources.Signals.Game;
 using Sources.Signals.Game.Interface;
 using Sources.View.AimEnter.AimTargets;
@@ -21,23 +20,20 @@ namespace Sources.Core.ItemTake
             {
                 foreach (IAimTarget x in _enterListener.GetEntered())
                 {
-                    if (x is not Pickable item) 
+                    if (x is not Pickable item)
                         continue;
-                    
+
                     _taker.Take(item);
-                    
+
                     break;
                 }
             });
-            
-            _signalBus.Subscribe(delegate (DropItemClickedSignal _)
-            {
-                _taker.DropCurrent();
-            });
 
-            _taker.Taken += _signalBus.Fire<ItemTakenSignal>;
+            _signalBus.Subscribe(delegate(DropItemClickedSignal _) { _taker.DropCurrent(); });
 
-            _taker.Dropped += _signalBus.Fire<ItemDroppedSignal>;
+            _taker.Taken += delegate { _signalBus.Fire<ItemTakenSignal>(); };
+
+            _taker.Dropped += delegate { _signalBus.Fire<ItemDroppedSignal>(); };
         }
     }
 }

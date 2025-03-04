@@ -1,5 +1,6 @@
 ﻿using Sources.Core.AimEnter.Visitors;
 using Sources.View.AimEnter.AimTargets;
+using Sources.View.AimEnter.AimTargets.Weapons;
 using Zenject;
 
 namespace Sources.Core.ItemsPlace.AimTargetVisitors
@@ -29,6 +30,11 @@ namespace Sources.Core.ItemsPlace.AimTargetVisitors
         }
 
         public override void Visit(GasTank gasTank)
+        {
+            
+        }
+
+        public override void Visit(Weapon weapon)
         {
             
         }

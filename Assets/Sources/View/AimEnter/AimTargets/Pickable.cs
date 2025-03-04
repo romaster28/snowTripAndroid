@@ -10,7 +10,7 @@ namespace Sources.View.AimEnter.AimTargets
     public class Pickable : BaseAimTarget
     {
         [SerializeField] private PickableKey _key;
-        
+
         public Rigidbody RigidBody { get; private set; }
 
         public PickableKey Key => _key;

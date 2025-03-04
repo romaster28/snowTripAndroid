@@ -30,3 +30,7 @@ MonoBehaviour:
     _addDelay: 2
     _healValue: 1
     _healDelay: 0.5
+  _shoot:
+    _bulletSpeed: 100
+    _lifeExpectancy: 3
+    _bulletPrefab: {fileID: 7298396682498739750, guid: 406dea5b14394ab4bb10e5cce7d65e0c, type: 3}

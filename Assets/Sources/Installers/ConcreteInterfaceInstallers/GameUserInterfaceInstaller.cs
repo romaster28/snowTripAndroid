@@ -15,7 +15,9 @@ namespace Sources.Installers.ConcreteInterfaceInstallers
             new GasTankFillRouter(),
             new EngineRouter(),
             new StatsRouter(),
-            new DeathRouter()
+            new DeathRouter(),
+            new TutorialRouter(),
+            new ShootRouter()
         };
 
         protected override void InstallAdditionalBindings()

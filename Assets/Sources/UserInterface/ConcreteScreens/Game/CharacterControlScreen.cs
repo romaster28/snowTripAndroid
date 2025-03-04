@@ -24,11 +24,15 @@ namespace Sources.UserInterface.ConcreteScreens.Game
 
         [SerializeField] private Clickable _sprint;
 
+        [SerializeField] private Clickable _fire;
+
         public TankFillPanel TankFillPanel => _tankFillPanel;
 
         public StatsView StatsView => _statsView;
 
         public Clickable Sprint => _sprint;
+
+        public Clickable Fire => _fire;
 
         public event Action OnEnterCarClicked;
 

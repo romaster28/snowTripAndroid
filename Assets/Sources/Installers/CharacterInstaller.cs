@@ -25,10 +25,6 @@ namespace Sources.Installers
 
             Container.Bind<Sprint>().AsSingle();
 
-            Container.BindInterfacesAndSelfTo<Cold>().AsSingle();
-
-            Container.BindInterfacesAndSelfTo<DieSender>().AsSingle();
-
             Container.Bind<Death>().WhenInjectedInto<DieSender>();
         }
     }

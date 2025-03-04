@@ -39,6 +39,8 @@ namespace Sources.Installers.SignalInstallers
 
         private void DeclareInterfaceSignals()
         {
+            Container.DeclareSignal<FireClickedSignal>();
+
             Container.DeclareSignal<EnterCarClickedSignal>();
             
             Container.DeclareSignal<PlaceClickedSignal>();

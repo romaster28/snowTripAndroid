@@ -1,10 +1,11 @@
-﻿using Sources.Core.ItemsClean;
+﻿using System;
+using Sources.Core.ItemsClean;
 using Sources.Core.ItemTake;
 using Sources.Data;
 using Sources.Signals.Game;
 using Sources.View.AimEnter.AimTargets;
-using UnityEngine;
 using Zenject;
+using Object = UnityEngine.Object;
 
 namespace Sources.Core.ItemsPlace
 {
@@ -17,6 +18,8 @@ namespace Sources.Core.ItemsPlace
         [Inject] private readonly IPickableItemsCleaner _cleaner;
         
         private BuildingItem _ready;
+
+        public event Action<PickableKey> Placed; 
 
         public void GetReadyItem(BuildingItem item)
         {
@@ -62,8 +65,10 @@ namespace Sources.Core.ItemsPlace
             BuildingItem ready = _ready;
             
             _ready.Built?.Invoke();
-            
+
             ReleaseReadyItem();
+            
+            Placed?.Invoke(ready.TargetPickable);
             
             Object.Destroy(ready.gameObject);
         }
