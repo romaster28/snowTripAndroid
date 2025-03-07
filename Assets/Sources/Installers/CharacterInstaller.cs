@@ -3,6 +3,7 @@ using Sources.Core.Character;
 using Sources.Core.Character.ConcreteCharacters;
 using Sources.Core.Die;
 using Sources.Core.Temperature;
+using Sources.View;
 using UnityEngine;
 using Zenject;
 
@@ -18,6 +19,8 @@ namespace Sources.Installers
 
         [SerializeField] private Mover _mover;
 
+        [SerializeField] private CharacterEnterListener _enterListener;
+
         public override void InstallBindings()
         {
             Container.Bind<ICharacter>().To<FpsMobileCharacter>().AsSingle()
@@ -26,6 +29,8 @@ namespace Sources.Installers
             Container.Bind<Sprint>().AsSingle();
 
             Container.Bind<Death>().WhenInjectedInto<DieSender>();
+
+            Container.Bind<ICharacterEnterListener>().FromInstance(_enterListener).AsSingle();
         }
     }
 }
